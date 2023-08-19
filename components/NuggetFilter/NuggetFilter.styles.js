@@ -2,9 +2,9 @@ import styled from 'styled-components'
 
 export const Wrapper = styled.div`
     min-height: 500px;
-    border: 1px solid #f9660b;
+    border: 1px solid #cca48f;
     width: 300px;
-    box-shadow: 5px 5px 4px #f9660b;
+    box-shadow: 5px 5px 4px #cca48f;
     border-radius: 20px;
     padding: 10px;
 `

@@ -35,12 +35,12 @@ export default function Header(props) {
             Tech stack
           </NavigationLink>
           <NavigationLink
-            href="/#about"
+            href="/#nuggets"
           >
             Nuggets
           </NavigationLink>
           <NavigationLink
-            href="/#about"
+            href="/#nuggets"
           >
             Blogs
           </NavigationLink>

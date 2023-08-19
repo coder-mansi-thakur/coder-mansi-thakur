@@ -6,7 +6,7 @@ import { NuggetsIcon } from "@/components/Icons";
 
 export function Nuggets() {
   return (
-    <NuggetContainer>
+    <NuggetContainer id="nuggets">
       <Wrapper>
         <div>
           <Image src={NuggetsIcon} alt="" />
