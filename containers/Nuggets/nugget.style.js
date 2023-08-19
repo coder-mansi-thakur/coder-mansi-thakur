@@ -9,4 +9,7 @@ export const NuggetContainer = styled.div`
 
 export const Wrapper = styled.div`
     width: 800px;
+    a{
+        color: #f9660b;
+    }
 `

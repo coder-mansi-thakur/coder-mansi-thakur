@@ -21,8 +21,8 @@ export default function Page() {
       <About />
       <TechStack />
       <Nuggets />
-      <Blogs />
-      <Contact/>
+      {false && <Blogs />}
+      <Contact />
       <Footer />
     </>
   );

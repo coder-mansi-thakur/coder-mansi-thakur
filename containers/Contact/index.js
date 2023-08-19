@@ -26,7 +26,7 @@ import TextArea from '@/components/TextArea'
 
 export function Contact() {
   return (
-    <Wrapper>
+    <Wrapper id="contanct">
 
       <Header>
         <Title>Contact Me</Title>

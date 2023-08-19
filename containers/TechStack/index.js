@@ -15,8 +15,32 @@ const techKnwledege = [
     techName: 'HTML',
     icon: '',
     obtained: 3,
-    description: 'I possess a strong command of HTML, proficiently creating structured and meaningful web content through the use of semantic tags and proper nesting. My knowledge encompasses creating forms, organizing text, and embedding multimedia elements effectively within HTML documents.'
-  }
+    description: 'Yeah I know about semantic tags'
+  },
+  {
+    techName: 'CSS',
+    icon: '',
+    obtained: 3,
+    description: ' I have got this uncanny knack for creating designs that snugly hug every device and screen size out there.'
+  },
+  {
+    techName: 'Javascript',
+    icon: '',
+    obtained: 3,
+    description: 'Promises? Oh, those are not my style, unlike JavaScript acrobatics.'
+  },
+  {
+    techName: 'React',
+    icon: '',
+    obtained: 3,
+    description: "Guess what? I've mastered the useState and useEffect duo, and now I'm on a quest to unravel the mysteries of when not to unleash their powers."
+  },
+  {
+    techName: 'Next JS',
+    icon: '',
+    obtained: 3,
+    description: "Embarking on a wild adventure in the realms of Next.js – because who needs sleep when you've got server-side sorcery to learn?"
+  },
 ]
 
 
@@ -38,7 +62,7 @@ const TechInfo = ({ techName, icon, description }) => (
 
 export function TechStack() {
   return (
-    <TechStackContainer>
+    <TechStackContainer id="techstack">
       <Title>Technologies</Title>
       <ListContainer>
         {

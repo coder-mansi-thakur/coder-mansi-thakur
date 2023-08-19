@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import styled from 'styled-components'
 
 export const HeaderContainer = styled.header`
@@ -10,7 +11,7 @@ export const NavigationLinkContainer = styled.div`
         gap: 24px;
 `
 
-export const NavigationLink = styled.div`
+export const NavigationLink = styled(Link)`
         &:hover{
           color: #f9660b;
         }

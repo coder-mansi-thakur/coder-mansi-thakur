@@ -62,9 +62,6 @@ export default function Crousel({ carouselSlidesData }) {
                 key={index}
               >
                 <CrouselSlide>
-                  <ImageConatiner>
-                    <Image src={slide.image || LeftArrowIcon} alt="" />
-                  </ImageConatiner>
 
                   <div>
                     <Title>{slide.title}</Title>

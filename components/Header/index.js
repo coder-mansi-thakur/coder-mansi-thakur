@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import {
   Wrapper,
   NameContainer,
@@ -11,16 +12,44 @@ export default function Header(props) {
     <HeaderContainer>
 
       <Wrapper>
-        <NameContainer>Mansi Thakur</NameContainer>
+        <NameContainer>
+          <Link href="/">
+            Mansi Thakur
+          </Link>
+        </NameContainer>
 
         <NavigationLinkContainer>
-          <NavigationLink>Home</NavigationLink>
-          <NavigationLink>About</NavigationLink>
-          <NavigationLink>Tech stack </NavigationLink>
-          <NavigationLink>Nuggets</NavigationLink>
-          <NavigationLink>Blogs</NavigationLink>
-          <NavigationLink>Contact</NavigationLink>
-          <NavigationLink>Night mode </NavigationLink>
+          <NavigationLink
+            href="/#home"
+          >
+            Home
+          </NavigationLink>
+          <NavigationLink
+            href="/#about"
+          >
+            About
+          </NavigationLink>
+          <NavigationLink
+            href="/#techstack"
+          >
+            Tech stack
+          </NavigationLink>
+          <NavigationLink
+            href="/#about"
+          >
+            Nuggets
+          </NavigationLink>
+          <NavigationLink
+            href="/#about"
+          >
+            Blogs
+          </NavigationLink>
+          <NavigationLink
+            href="/#contanct"
+          >
+            Contact
+          </NavigationLink>
+          {/* <NavigationLink>Night mode </NavigationLink> */}
         </NavigationLinkContainer>
 
       </Wrapper>

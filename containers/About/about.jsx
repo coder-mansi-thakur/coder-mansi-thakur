@@ -1,4 +1,4 @@
-import Image  from 'next/image'
+import Image from 'next/image'
 import {
   AbouTitle,
   TextWrappper,
@@ -35,7 +35,7 @@ const experinceInfo = [
 export function About() {
   return (
 
-    <AboutMeContainer>
+    <AboutMeContainer id="about">
 
       <div>
         <AboutMeHeader>
