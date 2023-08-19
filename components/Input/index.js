@@ -1,9 +1,10 @@
 import {InputContainer, InputClass, Label}  from './input.styles'
 
 export default function Input({
+  name,
   label,
   placeholder,
-  name,
+  onChangeHandler,
 }){
 
   return(
@@ -13,6 +14,7 @@ export default function Input({
     </Label>
       <InputClass
       name={name}
+      onChange={onChangeHandler}
       placeholder={placeholder}
       />
     </InputContainer>

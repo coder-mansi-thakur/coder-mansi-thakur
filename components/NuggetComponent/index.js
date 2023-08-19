@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { Card, Tag, Title, TagWrapper, Description, ReadMoreText, LinksWrapper } from './nugget.style'
 
-import { tagsInfo } from './techStackConst'
+import { techKnwledege } from '@/constants'
 
 export default function Nugget({ data }) {
   const { title, description = "", tags = [] } = data
@@ -37,7 +37,8 @@ export default function Nugget({ data }) {
 
         <TagWrapper>{
           tags.map(data => {
-            const tag = tagsInfo[data]
+            const tag = techKnwledege[data]
+            if(!tag) return null
             return (
               <Tag key={tag.name} >
                 {tag.title}

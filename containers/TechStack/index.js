@@ -10,47 +10,17 @@ import {
 } from './TechStack.style'
 import Progress from "../../components/Progress";
 
-const techKnwledege = [
-  {
-    techName: 'HTML',
-    icon: '',
-    obtained: 3,
-    description: 'Yeah I know about semantic tags'
-  },
-  {
-    techName: 'CSS',
-    icon: '',
-    obtained: 3,
-    description: ' I have got this uncanny knack for creating designs that snugly hug every device and screen size out there.'
-  },
-  {
-    techName: 'Javascript',
-    icon: '',
-    obtained: 3,
-    description: 'Promises? Oh, those are not my style, unlike JavaScript acrobatics.'
-  },
-  {
-    techName: 'React',
-    icon: '',
-    obtained: 3,
-    description: "Guess what? I've mastered the useState and useEffect duo, and now I'm on a quest to unravel the mysteries of when not to unleash their powers."
-  },
-  {
-    techName: 'Next JS',
-    icon: '',
-    obtained: 3,
-    description: "Embarking on a wild adventure in the realms of Next.js – because who needs sleep when you've got server-side sorcery to learn?"
-  },
-]
+import { techKnwledege } from '@/constants'
 
 
-const TechInfo = ({ techName, icon, description }) => (
+
+const TechInfo = ({ title, icon, description }) => (
   <TechInfoWrapper>
     <div>
       <div>
         <Image src={icon || LinkedInIcon} alt="icon" />
       </div>
-      <TechnologyName>{techName}</TechnologyName>
+      <TechnologyName>{title}</TechnologyName>
       <Progress obtained={3} fullScore={5} />
     </div>
 
@@ -66,13 +36,13 @@ export function TechStack() {
       <Title>Technologies</Title>
       <ListContainer>
         {
-          techKnwledege.map(({ techName, icon, description, obtained }) => {
+          techKnwledege.map(({ title, icon, description, obtained }) => {
             return (
               <TechInfo
                 icon={icon}
-                key={techName}
+                key={title}
                 obtained={obtained}
-                techName={techName}
+                title={title}
                 description={description}
               />
             )

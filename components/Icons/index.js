@@ -8,6 +8,7 @@ import DownloadIcon from "../../public/download.svg"
 import NuggetsIcon from '../../public/nuggets.svg'
 import EmailIcon from '../../public/emailicon.svg'
 import LocationIcon from '../../public/location.svg'
+import OwlIcon from '../../public/owls.svg'
 import ProfileIcon from '../../public/profile.svg'
 import LeftArrowIcon from '../../public/left-arrow.svg'
 import RightArrowIcon from '../../public/right-arrow.svg'
@@ -15,6 +16,7 @@ import RightArrowWithLeadIcon from '../../public/right-arrow-icon.svg'
 import SendMailIcon from '../../public/sendMail.png'
 
 export {
+  OwlIcon,
   WhiteLinkedInIcon,
   WhiteMediumIcon,
   WhiteTwitterIcon,

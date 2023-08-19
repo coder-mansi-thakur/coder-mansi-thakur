@@ -12,5 +12,10 @@ export const nuggets = [
     
     So, to reiterate, even though strings in JavaScript can be used in a way that seems similar to primitives, they are actually objects with methods, and the 'toUpperCase()' method is an example of how you can manipulate strings in JavaScript.`,
     tags: [1, 2, 3]
+  },
+  {
+    title: 'abc',
+    description: "asdkjbq",
+    tags: [5]
   }
 ]
