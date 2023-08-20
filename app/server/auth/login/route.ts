@@ -23,7 +23,7 @@ export async function POST(req: NextRequest, res: NextResponse) {
 
         const tokenData = {
             id: userData._id,
-            username: userData.userName,
+            userName: userData.userName,
             email: userData.email,
             isVerified: userData.isVerified
         }
