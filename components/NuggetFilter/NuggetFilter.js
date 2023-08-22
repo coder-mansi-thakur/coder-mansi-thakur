@@ -47,7 +47,7 @@ export function NuggetFilter({
                 color={color}
                 background={background}
                 borderColor={borderColor}
-                onClick={() => selectTagHandler(id)}
+                onClick={() => unSelectTagHandler(id)}
               >
                 {title}
               </FilterTag>
