@@ -1,10 +1,10 @@
-
+import './globals.css'
 
 export default function Page() {
 
   return (
     <>
-     <h1>hello</h1>
+      <h1 className="text-3xl font-bold underline" >hello</h1>
     </>
   );
 }
