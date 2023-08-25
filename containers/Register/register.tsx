@@ -22,7 +22,7 @@ interface FormPayload {
 }
 
 interface FormField {
-  name: string;
+  fieldName: string;
   dot: boolean;
   label: string;
   disabled: boolean;
@@ -31,10 +31,10 @@ interface FormField {
 
 const signInForms: FormField [] = [
   {
-    name: 'username', dot: true, label: 'Username', disabled: false, type: 'text'
+    fieldName: 'username', dot: true, label: 'Username', disabled: false, type: 'text'
   },
   {
-    name: 'password', dot: true, label: 'Password', disabled: false, type: 'password'
+    fieldName: 'password', dot: true, label: 'Password', disabled: false, type: 'password'
   },
 ]
 
@@ -71,16 +71,14 @@ export default function Register(props: RegisterProps) {
         <form onSubmit={formik.handleSubmit}>
           {
             signInForms.map((field) => {
-              const { name, dot, label, disabled, type } = field
-              const error = formik.errors
-              console.log("🚀 ~ file: register.tsx:76 ~ signInForms.map ~ error:", typeof error)
-              console.log("🚀 ~ file: register.tsx:76 ~ signInForms.map ~ formik:", formik)
-              console.log("🚀 ~ file: register.tsx:67 ~ signInForms.map ~ error:", error[name])
+              const { fieldName, dot, label, disabled, type } = field
+              const error:object = formik.errors
+              console.log("🚀 ~ file: register.tsx:67 ~ signInForms.map ~ error:", error[fieldName as keyof object])
               return (
                 <Field
                   dot={dot}
                   type={type}
-                  name={name}
+                  name={fieldName}
                   label={label}
                   disabled={disabled}
                   error={`error`}
