@@ -1,7 +1,6 @@
 import User from '@/models/userModel'
 import bcryptjs from 'bcryptjs';
 import transport from '@/mailConfig/mailConfig'
-import { toast } from 'react-hot-toast';
 
 export const sendEmail = async ({email, emailType, userId}: any) => {
     try {
