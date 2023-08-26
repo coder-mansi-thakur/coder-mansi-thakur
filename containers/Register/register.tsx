@@ -1,55 +1,90 @@
 import { useState } from "react";
-import { Formik, Form, useFormik } from 'formik';
-import Input from "@/components/Input";
+import { useFormik } from 'formik';
+import { regex } from '@/constants'
+import { validate } from '@/helpers'
 import Field from "@/components/Field";
-import ErrorMessage from "@/components/ErrorMessage";
-import { DISABLE_SPEEDY } from "styled-components/dist/constants";
 
+import {
+  useSignIn
+} from '@/lib/hooks'
 
-interface RegisterProps {
-
-}
-
-interface Error {
-  username: string;
-
-}
-
-interface FormPayload {
-  username: string;
-  password: string;
-  [key: string]: string;
-}
 
 interface FormField {
   fieldName: string;
-  dot: boolean;
   label: string;
   disabled: boolean;
   type: string;
+  required: true;
+  regex?: RegExp;
+  regexMessage?: string;
 }
 
-const signInForms: FormField [] = [
+const signInForms: FormField[] = [
   {
-    fieldName: 'username', dot: true, label: 'Username', disabled: false, type: 'text'
+    fieldName: 'username', label: 'Username', disabled: false, type: 'text', required: true,
   },
   {
-    fieldName: 'password', dot: true, label: 'Password', disabled: false, type: 'password'
+    fieldName: 'password',
+    label: 'Password',
+    disabled: false,
+    type: 'password',
+    required: true,
+    regex: regex.passwordRegex,
+    regexMessage: 'Minimum eight characters, at least one letter, one number and one special character '
   },
 ]
 
-export default function Register(props: RegisterProps) {
+const signUpForm: FormField[] = [
+  {
+    fieldName: 'email',
+    label: 'E mail address',
+    disabled: false,
+    type: 'text',
+    required: true,
+    regex: regex.emailRegex,
+    regexMessage: 'Invalid Email Format'
+  },
+  {
+    fieldName: 'username', label: 'Username', disabled: false, type: 'text', required: true,
+  },
+  {
+    fieldName: 'password',
+    label: 'Password',
+    disabled: false,
+    type: 'password',
+    required: true,
+    regex: regex.passwordRegex,
+    regexMessage: 'Minimum eight characters, at least one letter, one number and one special character '
+  },
+  {
+    fieldName: 'retypePassword',
+    label: 'Re type password',
+    disabled: false,
+    type: 'retypePassword',
+    required: true,
+    regex: regex.passwordRegex,
+    regexMessage: 'Minimum eight characters, at least one letter, one number and one special character '
+  },
+]
+
+export default function Register(props: any) {
 
   const [isSignUpState, setIsSignUpState] = useState(false)
+  const {
+    isLoading: isSendLoading,
+    handleSend
+  } = useSignIn({
+    onSuccess: () =>{},
+    onFailure: (e: any) => console.error(e)
+  })
 
-  const validate = (values: FormPayload) => {
-    const errors: FormPayload = { username: '', password: '' };
 
-    if (!values.username) {
-      errors.username = 'required';
-    }
-    return errors;
-  }
+  const onSubmit  = (values: any) => {
+    handleSend(values)
+    console.log("🚀 ~ file: register.tsx:72 ~ onSubmit ~ values:", values)
+  } 
+  const form = isSignUpState ? signUpForm : signInForms
+
 
 
   const formik = useFormik({
@@ -58,9 +93,9 @@ export default function Register(props: RegisterProps) {
       password: '',
     },
     onSubmit: values => {
-      alert(JSON.stringify(values, null, 2));
+      onSubmit(values)
     },
-    validate,
+    validate: (values) => validate(form, values),
   });
 
 
@@ -70,18 +105,20 @@ export default function Register(props: RegisterProps) {
 
         <form onSubmit={formik.handleSubmit}>
           {
-            signInForms.map((field) => {
-              const { fieldName, dot, label, disabled, type } = field
-              const error:object = formik.errors
-              console.log("🚀 ~ file: register.tsx:67 ~ signInForms.map ~ error:", error[fieldName as keyof object])
+            form.map((field) => {
+              const { fieldName, label, disabled, type, required } = field
+              const error: object = formik.errors
+              const touched: object = formik.touched
               return (
                 <Field
-                  dot={dot}
+                  key={fieldName}
+                  dot={required}
                   type={type}
                   name={fieldName}
                   label={label}
                   disabled={disabled}
-                  error={`error`}
+                  onChange={formik.handleChange}
+                  error={touched[fieldName as keyof object] && error[fieldName as keyof object]}
                 />
               )
             })
@@ -94,6 +131,19 @@ export default function Register(props: RegisterProps) {
             Submit
           </button>
         </form>
+
+        <div className='flex justify-between p10 mb-5'>
+          <div
+            className='w-1/2 rounded border-2 text-center'
+            onClick={() => setIsSignUpState(false)}
+          >
+            Sign In
+          </div>
+          <div
+            className='w-1/2 rounded border-2 text-center'
+            onClick={() => setIsSignUpState(true)}
+          >Sign Up</div>
+        </div>
       </div>
     </div>
   )
