@@ -7,7 +7,7 @@ interface FieldProps {
   label: string,
   name: string,
   type: string,
-  disabled: boolean,
+  disabled?: boolean,
   onChange: any,
 }
 
