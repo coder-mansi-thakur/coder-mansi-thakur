@@ -55,7 +55,7 @@ const signUpForm: FormField[] = [
     regexMessage: 'Invalid Email Format'
   },
   {
-    fieldName: 'username',
+    fieldName: 'userName',
     label: 'Username',
     type: 'text',
     required: true,
@@ -141,7 +141,7 @@ export default function Register(props: any) {
 
   const formik = useFormik({
     initialValues: {
-      username: '',
+      userName: '',
       password: '',
     },
     onSubmit: (values, {setErrors}) => {
