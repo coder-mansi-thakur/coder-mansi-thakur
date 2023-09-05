@@ -1,4 +1,4 @@
-import { Loader } from '@/components'
+import { Loader } from '@/components/Loader/Loader'
 
 interface ButtonProps {
   isLoading?: boolean;
