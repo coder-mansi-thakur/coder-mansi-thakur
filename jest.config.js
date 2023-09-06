@@ -19,10 +19,12 @@ module.exports = {
         "^.+\\.(png|jpg|jpeg|gif|webp|avif|ico|bmp|svg)$": `<rootDir>/__mocks__/fileMock.js`,
 
         // Handle module aliases
+        "^@/components": "<rootDir>/components/index.js",
         "^@/components/(.*)$": "<rootDir>/components/$1",
 
         "^@/pages/(.*)$": "<rootDir>/pages/$1",
     },
+    // setupFilesAfterEnv: ['@testing-library/jest-dom/extend-expect'],
     testPathIgnorePatterns: ["<rootDir>/node_modules/", "<rootDir>/.next/"],
     transform: {
         // Use babel-jest to transpile tests with the next/babel preset
@@ -34,4 +36,7 @@ module.exports = {
         "^.+\\.module\\.(css|sass|scss)$",
     ],
     testEnvironment: "jest-environment-jsdom",
+    "setupFilesAfterEnv": [
+        "<rootDir>/jest.setup.ts"
+      ]
 };

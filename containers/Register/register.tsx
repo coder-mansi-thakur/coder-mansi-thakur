@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useFormik } from 'formik';
-import { useRouter } from 'next/router'
-import type {  } from 'formik';
+import { useRouter } from 'next/navigation'
+import { get } from 'lodash'
 import "react-toastify/dist/ReactToastify.css";
 
 import { regex } from '@/constants'
@@ -80,20 +80,30 @@ const signUpForm: FormField[] = [
 
 export default function Register(props: any) {
 
+  const router = useRouter()
+
   const [isSignUpState, setIsSignUpState] = useState(false)
 
   const signSuccess = (payload: any) => {
     const { message, success, data } = payload
 
     if (success) {
-      const { isVerified } = data
-      if (!isVerified) {
-        toast.info(message)
-      } else {
+      router.push('problems')
+      //TODO: correct this code when user mail verification backend code is corrcted.
 
-      }
+      // const { isVerified } = data
+      // if (!isVerified) {
+      //   toast.info(message)
+      // } else {
+      //   router.push('problems')
+      // }
     }
 
+  }
+
+  const signInFailure = (response: any) => {
+    const message = get(response, 'response.data.error', '')
+    toast.error(message || 'There is some issue in login, try again')
   }
 
   const {
@@ -101,7 +111,7 @@ export default function Register(props: any) {
     handleSend: sendSignInRequest
   } = useSignIn({
     onSuccess: signSuccess,
-    onFailure: (e: any) => console.error(e)
+    onFailure: signInFailure
   })
 
   const signUpSuccsess = () => {
@@ -144,7 +154,7 @@ export default function Register(props: any) {
       userName: '',
       password: '',
     },
-    onSubmit: (values, {setErrors}) => {
+    onSubmit: (values, { setErrors }) => {
       onSubmit(values, setErrors)
     },
     validate: (values) => validate(form, values),
