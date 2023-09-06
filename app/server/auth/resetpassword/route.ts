@@ -1,4 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
+import bcryptjs from "bcryptjs";
+
 import { connect } from "../../../../dbConfig/dbConfig";
 import User from "../../../../models/userModel"; 
 import { sendEmail } from "@/helpers/mailer";
@@ -9,7 +11,7 @@ connect()
 export async function POST(req: NextRequest, res: NextResponse) {
     try {
         const reqBody = await req.json();
-        const {token,email} = reqBody;
+        const {token, email, password} = reqBody;
         let response;
         if(email){
             const userData = await User.findOne({email})
@@ -21,13 +23,17 @@ export async function POST(req: NextRequest, res: NextResponse) {
             })
             
             if(!userData){
-                return NextResponse.json({error: 'Invalid Token'}, {status: 400})
+                return NextResponse.json({error: 'Invalid Token'}, {status: 401})
             }
     
             if(new Date(`${userData.verifyTokenExpiry}`) < new Date()){
-                return NextResponse.json({error: 'Token Expire'}, {status: 400})
+                return NextResponse.json({error: 'Token Expire'}, {status: 401})
             }
+
+            const salt = await bcryptjs.genSalt(10)
+            const hashPassword = await bcryptjs.hash(password, salt)
             userData.isVerified = true;
+            userData.password = hashPassword
             userData.forgotPasswordToken = undefined;
             userData.forgotPasswordTokenExpiry = undefined;
     

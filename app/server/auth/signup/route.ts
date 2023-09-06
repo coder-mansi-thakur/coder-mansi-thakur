@@ -13,9 +13,13 @@ export async function POST(req: NextRequest) {
         
         const {userName, password, email} = reqBody;
 
-        const userData = await User.findOne({email})
-        if(userData){
-            return NextResponse.json({error: 'User already exists'}, {status: 400})
+        const userData = await User.findOne({ $or: [email, userName] })
+        if(userData && userData.email === email){
+            return NextResponse.json({error: 'User email already exists'}, {status: 409})
+        }
+
+        if(userData && userData.userName === userName){
+            return NextResponse.json({error: 'Username is already taken'}, {status: 409})
         }
 
         //hash password

@@ -13,28 +13,28 @@ export async function POST(req: NextRequest, res: NextResponse) {
         const {userName, password, email} = reqBody;
 
         const userData = email ? await User.findOne({email}) : await User.findOne({userName})
+
         if(!userData){
-            return NextResponse.json({error: 'User not found'}, {status: 400})
+            return NextResponse.json({error: 'User not found'}, {status: 404})
         }
+
         const validPassword = await bcrypt.compare(password, userData.password);
         if(!validPassword){
-            return NextResponse.json({error: 'Invalid Password'}, {status: 400})
+            return NextResponse.json({error: 'Invalid Password'}, {status: 401})
         }
 
         if(!userData.isVerified){
-            return NextResponse.json({error: 'User not verified'}, {status: 400})
+            return NextResponse.json({error: 'User not verified'}, {status: 401})
         }
 
         const tokenData = {
-            id: userData._id,
             userName: userData.userName,
-            email: userData.email,
-            isVerified: userData.isVerified
+            email: userData.email
         }
 
         const token = await jwt.sign(tokenData, process.env.TOKEN_SECRET, {expiresIn: "1h"})
 
-        const response = NextResponse.json({message: 'User LoggedIn', success:true, data: tokenData, }, {status: 200})
+        const response = NextResponse.json({message: 'User LoggedIn', success:true, data: tokenData }, {status: 200})
         response.cookies.set('token', token, {
             httpOnly: true
         })

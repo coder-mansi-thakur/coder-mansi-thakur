@@ -15,11 +15,11 @@ export async function POST(req: NextRequest, res: NextResponse) {
         })
         
         if(!userData){
-            return NextResponse.json({error: 'Invalid Token'}, {status: 400})
+            return NextResponse.json({error: 'Invalid Token'}, {status: 401})
         }
 
         if(new Date(`${userData.verifyTokenExpiry}`) < new Date()){
-            return NextResponse.json({error: 'Token Expire'}, {status: 400})
+            return NextResponse.json({error: 'Token Expire'}, {status: 401})
         }
 
         userData.isVerified = true;
