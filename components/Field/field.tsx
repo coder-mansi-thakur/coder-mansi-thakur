@@ -7,7 +7,8 @@ interface FieldProps {
   label: string,
   name: string,
   type: string,
-  disabled: boolean,
+  disabled?: boolean,
+  onChange: any,
 }
 
 const style = {
@@ -29,7 +30,7 @@ const Field = forwardRef(
     props: FieldProps,
     ref: any,
   ) => {
-    const { disabled, dot, error, label, name, type = 'text', ...rest } = props
+    const { disabled, dot, error, label, name, type = 'text', onChange, ...rest } = props
     let component;
 
     // if you won't use select, you can delete this part
@@ -45,6 +46,7 @@ const Field = forwardRef(
           id={name}
           name={name}
           ref={ref}
+          onChange={onChange}
           {...rest}
         />
       );
@@ -63,6 +65,7 @@ const Field = forwardRef(
           id={name}
           name={name}
           ref={ref}
+          onChange={onChange}
           {...rest}
         />
       );
@@ -80,6 +83,7 @@ const Field = forwardRef(
             id={name}
             name={name}
             type="checkbox"
+            onChange={onChange}
             {...rest}
           />
           <span className={style.checkboxLabel} />
@@ -104,6 +108,7 @@ const Field = forwardRef(
             id={name}
             name={name}
             type={type}
+            onChange={onChange}
             ref={ref}
             {...rest}
           />

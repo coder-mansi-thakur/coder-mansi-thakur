@@ -9,7 +9,11 @@ export default function Header(props: HeaderProp): JSX.Element {
 
   return (
    <div>
-    logged out
+    {isLoggedIn ? 
+    'logged in'
+    :
+    'logged out'
+}
    </div>
   )
 

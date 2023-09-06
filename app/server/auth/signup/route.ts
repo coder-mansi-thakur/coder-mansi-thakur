@@ -9,13 +9,14 @@ connect()
 export async function POST(req: NextRequest) {
     try {
         const reqBody = await req.json();
-        
-        const {userName, password, email} = reqBody;
 
-        const userData = await User.findOne({email})
-        if(userData){
-            return NextResponse.json({error: 'User already exists'}, {status: 400})
+        const { userName, password, email } = reqBody;
+
+        const userData = await User.findOne({ $or: [email, userName] })
+        if (userData) {
+            return NextResponse.json({ error: 'User already exists' }, { status: 400 })
         }
+
 
         //hash password
         const salt = await bcryptjs.genSalt(10)
@@ -28,10 +29,10 @@ export async function POST(req: NextRequest) {
 
         await newUser.save()
 
-        return NextResponse.json({message: 'User created successfully', success:true, email}, {status: 200})
+        return NextResponse.json({ message: 'User created successfully', success: true, email }, { status: 200 })
 
-    } catch (error:any) {
-        return NextResponse.json({ error: error.message }, { status: 500});
+    } catch (error: any) {
+        return NextResponse.json({ error: error.message }, { status: 500 });
     }
-    
+
 }
