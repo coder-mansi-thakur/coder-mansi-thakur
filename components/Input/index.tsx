@@ -4,13 +4,11 @@ interface InputProps {
   value: string,
   error?: string,
   placeholder: string,
-  formik?: any,
   onChangeHandler?: any,
 }
 export default function Input(props: InputProps) {
 
-  const { name, label, placeholder, onChangeHandler, value, error, formik } = props
-  console.log({...formik.getFieldProps(name)})
+  const { name, label, placeholder, onChangeHandler, value, error, } = props
 
   return (
     <div className='flex-col mx-5 my-5 mb-3 rounded text-xs'>

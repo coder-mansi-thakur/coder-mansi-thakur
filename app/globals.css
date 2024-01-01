@@ -118,3 +118,28 @@ a {
     scroll-behavior: smooth;
   }
 }
+
+@keyframes blink {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.blinking-cursor {
+  display: inline-block;
+  font-size: 1.2em;
+  color: #000; /* Set the color of the cursor */
+  animation: blink 1s infinite; /* Adjust the animation duration as needed */
+}
+
+.prevent-select {
+  -webkit-user-select: none; /* Safari */
+  -ms-user-select: none; /* IE 10 and IE 11 */
+  user-select: none; /* Standard syntax */
+}

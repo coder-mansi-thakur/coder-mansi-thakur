@@ -5,6 +5,8 @@ module.exports = {
         "**/*.{js,jsx,ts,tsx}",
         "!**/*.d.ts",
         "!**/node_modules/**",
+        "!**/index.*.{js,jsx,ts,tsx}",
+        "!constants/**",
     ],
     moduleNameMapper: {
         // Handle CSS imports (with CSS modules)
@@ -20,6 +22,9 @@ module.exports = {
 
         // Handle module aliases
         "^@/components": "<rootDir>/components/index.js",
+        "^@/constants": "<rootDir>/constants/index.js",
+        "^@/helpers": "<rootDir>/helpers/index.js",
+        "^@/lib/hooks": "<rootDir>/lib/hooks/index.js",
         "^@/components/(.*)$": "<rootDir>/components/$1",
 
         "^@/pages/(.*)$": "<rootDir>/pages/$1",
@@ -38,5 +43,14 @@ module.exports = {
     testEnvironment: "jest-environment-jsdom",
     "setupFilesAfterEnv": [
         "<rootDir>/jest.setup.ts"
-      ]
+    ],
+    coverageThreshold: {
+        global: {
+            statements: 1, // Minimum statement coverage (percentage)
+            branches: 0,   // Minimum branch coverage (percentage)
+            functions: 0,  // Minimum function coverage (percentage)
+            lines: 0,      // Minimum line coverage (percentage)
+        },
+    },
+    coverageReporters: ["html"],
 };

@@ -1,23 +1,20 @@
 import { useState } from "react";
-import { useFormik } from 'formik';
 import { useRouter } from 'next/navigation'
 import { get } from 'lodash'
 import "react-toastify/dist/ReactToastify.css";
 
 import { regex } from '@/constants'
-import { validate } from '@/helpers'
-import Field from "@/components/Field";
 import { ToastContainer, toast } from "react-toastify";
 
 import {
   useSignIn,
   useSignUp
 } from '@/lib/hooks'
-import Button from "@/components/Button";
+import { GenericForm } from "@/components/Form";
 
 
 interface FormField {
-  fieldName: string;
+  name: string;
   label: string;
   disabled?: boolean;
   type: string;
@@ -28,7 +25,7 @@ interface FormField {
 
 const signInForms: FormField[] = [
   {
-    fieldName: 'email',
+    name: 'email',
     label: 'E-mail address',
     type: 'text',
     required: true,
@@ -36,7 +33,7 @@ const signInForms: FormField[] = [
     regexMessage: 'Write it like a mail na'
   },
   {
-    fieldName: 'password',
+    name: 'password',
     label: 'Password',
     type: 'password',
     required: true,
@@ -47,7 +44,7 @@ const signInForms: FormField[] = [
 
 const signUpForm: FormField[] = [
   {
-    fieldName: 'email',
+    name: 'email',
     label: 'E mail address',
     type: 'text',
     required: true,
@@ -55,13 +52,13 @@ const signUpForm: FormField[] = [
     regexMessage: 'Invalid Email Format'
   },
   {
-    fieldName: 'userName',
+    name: 'userName',
     label: 'Username',
     type: 'text',
     required: true,
   },
   {
-    fieldName: 'password',
+    name: 'password',
     label: 'Password',
     type: 'password',
     required: true,
@@ -69,7 +66,7 @@ const signUpForm: FormField[] = [
     regexMessage: 'Minimum eight characters, at least one letter, one number and one special character '
   },
   {
-    fieldName: 'retypePassword',
+    name: 'retypePassword',
     label: 'Re type password',
     type: 'password',
     required: true,
@@ -131,7 +128,7 @@ export default function Register(props: any) {
   })
 
 
-  const onSubmit = (values: any, setErrors: any) => {
+  const onSubmit = (values: any) => {
     if (isSignUpState) {
       const { password, retypePassword } = values
       if (password !== retypePassword) {
@@ -149,59 +146,27 @@ export default function Register(props: any) {
 
 
 
-  const formik = useFormik({
-    initialValues: {
-      userName: '',
-      password: '',
-    },
-    onSubmit: (values, { setErrors }) => {
-      onSubmit(values, setErrors)
-    },
-    validate: (values) => validate(form, values),
-  });
-
-
   return (
-    <div className='h-screen flex justify-center items-center width-screen'>
+    <div className='h-screen flex justify-center items-center width-screen' data-testid="register-container">
       <div className='w-96  h-fit rounded-2xl bg-white shadow-lg px-5'>
         <ToastContainer />
 
-        <form onSubmit={formik.handleSubmit}>
-          {
-            form.map((field) => {
-              const { fieldName, label, type, required } = field
-              const error: object = formik.errors
-              const touched: object = formik.touched
-              return (
-                <Field
-                  key={fieldName}
-                  dot={required}
-                  type={type}
-                  name={fieldName}
-                  label={label}
-                  disabled={isSignInLoading}
-                  onChange={formik.handleChange}
-                  error={touched[fieldName as keyof object] && error[fieldName as keyof object]}
-                />
-              )
-            })
-          }
-
-          <Button
-            isLoading={isSignInLoading || isSignUpLoading}
-          />
-        </form>
-
+        <GenericForm
+          submitButtonHandler={onSubmit}
+          formFields={isSignUpState ? signUpForm : signInForms}
+        />
         <div className='flex justify-between p10 mb-5 gap-2'>
           <div
             className={`w-1/2 rounded border-2 text-center ${!isSignUpState && `text-white bg-black border-black`}`}
             onClick={() => setIsSignUpState(false)}
+            data-testid="sign-in-form"
           >
             Sign In
           </div>
           <div
             className={`w-1/2 rounded border-2 text-center ${isSignUpState && `text-white bg-black border-black`}`}
             onClick={() => setIsSignUpState(true)}
+            data-testid="sign-up-form"
           >Sign Up</div>
         </div>
       </div>

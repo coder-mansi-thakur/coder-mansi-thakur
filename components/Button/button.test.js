@@ -1,18 +1,14 @@
 import React from 'react';
 import { render, waitFor } from '@testing-library/react';
-import Button from './button'; 
+import { Button } from './button';
 
 describe('Button Component', () => {
-  it('renders the button with the "Submit" text', async() => {
+  it('renders the button with the "Submit" text', async () => {
     const { getByText, container } = render(<Button />);
     await waitFor(() => {
       const submitButton = getByText('Submit');
       expect(submitButton).toBeInTheDocument();
     });
-  
-    console.log("🚀 ~ file: button.test.js:8 ~ it ~ container:", container.innerHTML)
-    // const submitButton = getByText('Submit');
-    // expect(submitButton).toBeInTheDocument();
   });
 
   it('renders the loader when isLoading is true', () => {

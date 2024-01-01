@@ -23,14 +23,26 @@
       "@/components/*": [
         "components/*"
       ],
+      "@/containers/*": [
+        "containers/*"
+      ],
       "@/components": [
         "components"
+      ],
+      "@/constants":[
+        "constants"
+      ],
+      "@/helpers": [
+        "helpers/"
       ],
       "@/pages/*": [
         "pages/*"
       ],
       "@/styles/*": [
         "styles/*"
+      ],
+      "@/lib/hooks":[
+        "lib/hooks"
       ]
     },
     "plugins": [
