@@ -32,6 +32,11 @@ export async function POST(req: NextRequest, res: NextResponse) {
             email: userData.email
         }
 
+        if(!userData.isVerified){
+            const response =  NextResponse.json({message: 'Kindly verify your mail first', success:true, data: tokenData, }, {status: 200})
+            return response
+        }
+
         const token = await jwt.sign(tokenData, process.env.TOKEN_SECRET, {expiresIn: "1h"})
 
         const response = NextResponse.json({message: 'User LoggedIn', success:true, data: tokenData }, {status: 200})

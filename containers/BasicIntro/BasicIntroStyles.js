@@ -1,6 +1,5 @@
 import styled from 'styled-components'
 
-import { colors, fontWeights } from '@/app/styling/variables'
 
 export const NameContainer = styled.div`
       font-size: 24px;
@@ -49,8 +48,8 @@ export const BasicIntroContainer = styled.div`
 
 export const Title = styled.div`
     font-size: 45px;
-    color: ${colors.fadedGreyColor};
-    font-weight: ${fontWeights.medium};
+    color: #b3b1ad;
+    font-weight: 500;
 `
 
 export const Description = styled.div`
