@@ -43,6 +43,18 @@
       ],
       "@/lib/hooks":[
         "lib/hooks"
+      ],
+      "@/helpers/mailer":[
+        "helpers/mailer"
+      ],
+      "@/layout": [
+        "layout"
+      ],
+      "@/models/userModel":[
+        "models/userModel"
+      ],
+      "@/mailConfig/mailConfig":[
+        "mailConfig/mailConfig"
       ]
     },
     "plugins": [

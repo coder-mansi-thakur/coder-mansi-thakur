@@ -12,10 +12,10 @@
     "coverage": "jest --coverage"
   },
   "dependencies": {
-    "@emotion/react": "^11.11.3",
-    "@emotion/styled": "^11.11.0",
+    "@emotion/react": "11.11.3",
+    "@emotion/styled": "11.11.0",
     "@fortawesome/react-fontawesome": "0.2.0",
-    "@mui/material": "^5.15.2",
+    "@mui/material": "5.15.2",
     "@types/node": "20.4.10",
     "@types/react": "18.2.20",
     "@types/react-dom": "18.2.7",
@@ -23,6 +23,7 @@
     "bcryptjs": "2.4.3",
     "eslint": "8.47.0",
     "eslint-config-next": "13.4.13",
+    "fs": "0.0.1-security",
     "jsonwebtoken": "9.0.1",
     "lodash": "4.17.21",
     "mongoose": "7.5.0",
