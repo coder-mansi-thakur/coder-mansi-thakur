@@ -51,7 +51,6 @@ export default function Register(props: RegisterProps) {
     return errors;
   }
 
-
   const formik = useFormik({
     initialValues: {
       username: '',
@@ -73,7 +72,6 @@ export default function Register(props: RegisterProps) {
             signInForms.map((field) => {
               const { fieldName, dot, label, disabled, type } = field
               const error:object = formik.errors
-              console.log("🚀 ~ file: register.tsx:67 ~ signInForms.map ~ error:", error[fieldName as keyof object])
               return (
                 <Field
                   dot={dot}

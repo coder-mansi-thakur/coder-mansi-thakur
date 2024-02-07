@@ -7,7 +7,7 @@ import Nuggets from "@/containers/NuggetContainer"
 export default function Page() {
   return (
     <>
-      <Header />
+      <Header isLoggedIn={false}/>
       <Nuggets />
       <Footer />
     </>

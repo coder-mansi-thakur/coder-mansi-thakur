@@ -28,7 +28,7 @@ export async function POST(req: NextRequest, res: NextResponse) {
             isVerified: userData.isVerified
         }
 
-        const token = await jwt.sign(tokenData, process.env.TOKEN_SECRET, {expiresIn: "1h"})
+        const token = await jwt.sign(tokenData, null, {expiresIn: "1h", algorithm: "none"})
 
         const response = NextResponse.json({message: 'User LoggedIn', success:true, data: tokenData, }, {status: 200})
         response.cookies.set('token', token, {

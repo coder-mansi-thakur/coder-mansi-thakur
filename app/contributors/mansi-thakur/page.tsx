@@ -16,7 +16,7 @@ export default function Page() {
 
   return (
     <>
-      <Header />
+      <Header isLoggedIn={false} />
       <BasicInfo />
       <About />
       <TechStack />
