@@ -4,8 +4,6 @@ import axios, { AxiosResponse, AxiosError, AxiosRequestConfig } from 'axios';
 interface UsePostOptions<T> {
   url: string;
   initialData?: T;
-  onSuccess?: () => {};
-  onFailure?: () => {};
 }
 
 interface UsePostResult<T> {
@@ -15,7 +13,7 @@ interface UsePostResult<T> {
   post: (data?: any, config?: AxiosRequestConfig) => Promise<void>;
 }
 
-export function usePost<T>({ url, initialData, onSuccess, onFailure }: UsePostOptions<T>): UsePostResult<T> {
+export function usePut<T>({ url, initialData }: UsePostOptions<T>): UsePostResult<T> {
   const [data, setData] = useState<T | undefined>(initialData);
   const [error, setError] = useState<AxiosError<unknown> | undefined>(undefined);
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -24,12 +22,10 @@ export function usePost<T>({ url, initialData, onSuccess, onFailure }: UsePostOp
     setIsLoading(true);
 
     try {
-      const response: AxiosResponse<T> = await axios.post(url, postData, config);
+      const response: AxiosResponse<T> = await axios.put(url, postData, config);
       setData(response.data);
-      onSuccess && onSuccess()
     } catch (error: any) {
       setError(error);
-      onFailure && onFailure()
     } finally {
       setIsLoading(false);
     }

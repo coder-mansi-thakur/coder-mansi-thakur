@@ -1,25 +1,25 @@
 import { NextRequest, NextResponse } from "next/server";
 
-import { connect } from "../../../../dbConfig/dbConfig";
-import Notes from '../../../../models/notes'
+import { connect } from "../../../../../dbConfig/dbConfig";
+import Tags from '../../../../../models/tags'
 
 connect()
 
 export async function POST(req: NextRequest, res: NextResponse) {
   try {
     const reqBody = await req.json()
-    const { ques, } = reqBody
+    const { ques, tagsText} = reqBody
     const id = crypto.randomUUID()
     let response;
 
-    if (!ques) return NextResponse.json({ error: 'ques is not provided' }, { status: 400 })
+    if (!tagsText) return NextResponse.json({ error: 'tags text is not provided' }, { status: 400 })
 
-    const notesData = await Notes.findOne({ ques, soft_delete: false })
+    const notesData = await Tags.findOne({ name: tagsText, soft_delete: false })
+    if (notesData) return NextResponse.json({ error: 'tag already exist' }, { status: 400 })
     console.log("🚀 ~ POST ~ notesData:", notesData)
-    if (notesData) return NextResponse.json({ error: 'ques already exist' }, { status: 400 })
 
-    let newNotes = new Notes({
-      ques, id
+    let newNotes = new Tags({
+      id, name: tagsText
     })
 
     const savedNote = await newNotes.save()
