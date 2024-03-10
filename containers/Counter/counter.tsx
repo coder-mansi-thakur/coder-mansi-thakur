@@ -1,7 +1,6 @@
 import React from "react"
 
-function Counter(props) {
-  console.log("🚀 ~ Counter ~ props:", props)
+function Counter() {
   const counter = 0
   return (
     <div>

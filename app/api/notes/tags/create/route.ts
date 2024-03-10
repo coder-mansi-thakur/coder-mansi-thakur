@@ -13,7 +13,7 @@ export async function POST(req: NextRequest, res: NextResponse) {
     let response;
 
     if (!tagsText) return NextResponse.json({ error: 'tags text is not provided' }, { status: 400 })
-
+    // @ts-ignore:next-line
     const notesData = await Tags.findOne({ name: tagsText, soft_delete: false })
     if (notesData) return NextResponse.json({ error: 'tag already exist' }, { status: 400 })
     console.log("🚀 ~ POST ~ notesData:", notesData)

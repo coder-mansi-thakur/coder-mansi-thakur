@@ -13,9 +13,9 @@ export async function POST(req: NextRequest, res: NextResponse) {
     let response;
 
     if (!ques) return NextResponse.json({ error: 'ques is not provided' }, { status: 400 })
-
+    
+   // @ts-ignore:next-line
     const notesData = await Notes.findOne({ ques, soft_delete: false })
-    console.log("🚀 ~ POST ~ notesData:", notesData)
     if (notesData) return NextResponse.json({ error: 'ques already exist' }, { status: 400 })
 
     let newNotes = new Notes({

@@ -11,15 +11,15 @@ export default function Page() {
   );
 }
 
-export async function getServerSideProps() { 
+// export async function getServerSideProps() { 
       
-  // Fetching data 
-  const res = await fetch( 
-  'https://jsonplaceholder.typicode.com/users'); 
-  const data = await res.json() ; 
+//   // Fetching data 
+//   const res = await fetch( 
+//   'https://jsonplaceholder.typicode.com/users'); 
+//   const data = await res.json() ; 
 
-  // Passing data to the Product Page using props 
-  return { 
-      props : {data} 
-  } 
-} 
+//   // Passing data to the Product Page using props 
+//   return { 
+//       props : {data} 
+//   } 
+// } 

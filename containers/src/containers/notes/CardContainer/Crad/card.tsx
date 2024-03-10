@@ -1,3 +1,4 @@
+//@ts-nocheck
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import moment from 'moment';
@@ -15,6 +16,8 @@ interface CardProps {
   ques: string;
   createdAt: Date;
   rate: number;
+  deleteCardHandler: ()=>{};
+  editClickHandler: (id: any, editQuesText: any)=>{};
 }
 
 const Card: React.FC<CardProps> = ({
@@ -29,8 +32,7 @@ const Card: React.FC<CardProps> = ({
   const [editMode, setEditMode] = useState(false)
   const [editQuesText, setEditQuesText] = useState(ques)
 
-  const onQuesTextHandler = (e) => {
-    debugger
+  const onQuesTextHandler = (e: any) => {
     const { value } = e.target
     setEditQuesText(value)
   }
